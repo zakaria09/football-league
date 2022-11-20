@@ -1,0 +1,23 @@
+
+<ng-container *ngFor="let fixtures of allFixtures; let i = index">
+
+  <mat-card>
+
+    <mat-card-title-group>
+      <mat-card-subtitle> Fixture: {{ i + 1 }} </mat-card-subtitle>
+    </mat-card-title-group>
+
+    <mat-card-content>
+      <mat-card *ngFor="let fixture of fixtures.fixture">
+        <mat-list role="list">
+          <mat-list-item>
+            {{ fixture.home }}  vs  {{ fixture.away }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card>
+    </mat-card-content>
+
+  </mat-card>
+
+</ng-container>
+

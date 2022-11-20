@@ -1,0 +1,67 @@
+<section class="matches" fxLayout fxLayoutAlign="center">
+
+  <mat-card>
+  <mat-card-title fxLayoutAlign="center">Create Fixtures</mat-card-title>
+  <form class="form" [formGroup]="fixturesForm" (ngSubmit)="onSubmit(fixturesForm)">
+    <mat-form-field fxLayoutAlign="center">
+      <mat-select
+        id="firstTeam"
+        formControlName="homeTeam"
+        placeholder="Select a Team"
+        [(value)]="homeTeam"
+        (selectionChange)="setFirstValues(fixturesForm)">
+        <mat-option
+          *ngFor="let team of teams; "
+          [value]="team">
+          {{ team }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Please Choose a Team!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxLayoutAlign="center">
+    <mat-select
+      id="secondTeam"
+      formControlName="awayTeam"
+      placeholder="Select a Team"
+      [(value)]="awayTeam"
+      [disabled]="isEmpty()">
+      <mat-option
+        *ngFor="let team of teams"
+        [disabled]="isSame(team)"
+        [value]="team">
+        {{ team }}
+      </mat-option>
+    </mat-select>
+    </mat-form-field>
+    <mat-card-actions fxLayoutAlign="center">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="fixturesForm.invalid">
+        Create Fixtures
+      </button>
+    </mat-card-actions>
+  </form>
+  </mat-card>
+
+  <ng-container *ngIf="fixtures.length">
+    <mat-card *ngFor="let fixture of fixtures">
+      <mat-list role="list">
+        <mat-list-item>
+          {{ fixture.home }}  vs  {{ fixture.away }}
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="saveFixtures()">
+      Save Fixtures
+    </button>
+  </ng-container>
+
+</section>

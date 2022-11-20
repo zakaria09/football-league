@@ -1,0 +1,18 @@
+
+
+<div>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [routerLink]="['./manage-teams']">Manage Team</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="!teams.length"
+    [routerLink]="['./fixtures']">Set Fixtures</button>
+</div>
+
+<router-outlet></router-outlet>
+
