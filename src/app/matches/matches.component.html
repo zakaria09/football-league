@@ -1,4 +1,17 @@
 
+<button
+  mat-raised-button
+  color="primary"
+  type="button">
+  Fixtures
+</button>
+<button
+  mat-raised-button
+  color="primary"
+  type="button">
+  Scores
+</button>
+
 <ng-container *ngFor="let fixtures of allFixtures; let i = index">
 
   <mat-card>
@@ -8,14 +21,25 @@
     </mat-card-title-group>
 
     <mat-card-content>
-      <mat-card *ngFor="let fixture of fixtures.fixture">
+      <div *ngFor="let fixture of fixtures.fixture">
         <mat-list role="list">
           <mat-list-item>
             {{ fixture.home }}  vs  {{ fixture.away }}
           </mat-list-item>
+          <mat-divider></mat-divider>
         </mat-list>
-      </mat-card>
+      </div>
     </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="setScores(fixtures.id)">
+        Set Scores
+      </button>
+    </mat-card-actions>
 
   </mat-card>
 

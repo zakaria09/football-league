@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
-export interface Fixture {
-  home: string;
-  away: string;
-}
-
-export interface Fixtures {
+export interface Scores {
   id: number;
-  fixture: Fixture[];
+  home: string;
+  homeScore: number;
+  away: string;
+  awayScore: number;
+  gameFinished: boolean;
 }
 
 @Injectable({
@@ -18,7 +17,6 @@ export class TeamService {
   index = 0;
 
   teams: Array<string> = [];
-  fixtures: Fixtures[] = []
 
 
   constructor() { }
@@ -27,9 +25,5 @@ export class TeamService {
     this.teams.push(team);
   }
 
-  addFixture(fixture: Fixture[]) {
-    this.index += 1;
-    this.fixtures.push({ id: this.index, fixture });
-  }
 
 }

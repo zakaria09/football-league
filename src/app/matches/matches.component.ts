@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Fixtures, TeamService } from '../services/team.service';
+import { TeamService } from '../services/team.service';
 
 @Component({
   selector: 'app-matches',
@@ -8,14 +8,56 @@ import { Fixtures, TeamService } from '../services/team.service';
 })
 export class MatchesComponent implements OnInit {
 
-  allFixtures: Fixtures[] = [];
+  allFixtures: any[] = [];
+
+  fixtureScores = [];
 
   constructor(
     private teamsvc: TeamService
   ) { }
 
   ngOnInit() {
-    console.log('matches', this.allFixtures = this.teamsvc.fixtures);
+    this.allFixtures = [
+      {
+          "id": 1,
+          "fixture": [
+              {
+                  "home": "dsbdifhosf",
+                  "away": "zakariye"
+              },
+              {
+                  "home": "ouhfodshf",
+                  "away": "zakariye"
+              },
+              {
+                  "home": "sdbcisd]",
+                  "away": "ouhfodshf"
+              },
+              {
+                  "home": "sdbcisd]",
+                  "away": "dsbdifhosf"
+              }
+          ]
+      },
+      {
+          "id": 2,
+          "fixture": [
+              {
+                  "home": "dsbdifhosf",
+                  "away": "zakariye"
+              },
+              {
+                  "home": "ouhfodshf",
+                  "away": "zakariye"
+              }
+          ]
+      }
+  ];
+  }
+
+
+  setScores(id: number) {
+
   }
 
 }

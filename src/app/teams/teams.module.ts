@@ -11,7 +11,8 @@ import { ManageTeamsComponent } from './manage-teams/manage-teams.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers } from '../store/games.reducer';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatListModule,
     MatCardModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('games', reducers)
   ],
   declarations: [
     TeamsComponent,

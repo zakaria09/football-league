@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { TeamService } from 'src/app/services/team.service';
+import { setFixtures } from 'src/app/store/games.actions';
+import { Fixture } from 'src/app/store/games.model';
 
 @Component({
   selector: 'app-fixtures',
@@ -17,14 +20,21 @@ export class FixturesComponent implements OnInit {
   fixturesForm!: FormGroup;
 
   teams: Array<string> = [];
-  fixtures: Array<{ home: string; away: string }> = [];
+  fixtures: Fixture[] = [];
 
   constructor(
-    private teamsvc: TeamService
+    private teamsvc: TeamService,
+    private store: Store
   ) { }
 
   ngOnInit() {
-    this.teams = this.teamsvc.teams;
+    this.teams = [
+      "dsbdifhosf",
+      "zakariye"
+    ];
+
+
+    console.log(this.teams);
 
     this.fixturesForm = new FormGroup({
       'homeTeam': new FormControl(null, Validators.required),
@@ -48,12 +58,13 @@ export class FixturesComponent implements OnInit {
   onSubmit(data: FormGroup) {
     if(this.fixturesForm.valid) {
       const { homeTeam: home, awayTeam: away } = data.value;
-      this.fixtures.push({ home, away })
+      this.fixtures.push({ id: new Date().getTime(), home, away })
     }
   }
 
   saveFixtures() {
-    this.teamsvc.addFixture(this.fixtures)
+    const fixtures = this.fixtures;
+    this.store.dispatch(setFixtures({ fixtures }))
     this.fixtures = [];
   }
 
